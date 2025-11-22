@@ -1,12 +1,21 @@
 spring:
   application:
     name: n1netails-cipher-service
+  profiles:
+    active: ${N1NETAILS_PROFILE:dev}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     initialization-mode: never
     url: ${POSTGRES_URL:jdbc:postgresql://localhost/n1netails}
     username: ${POSTGRES_USERNAME:n1netails}
     password: ${POSTGRES_PASSWORD:n1netails}
-  driver-class-name: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
   jpa:
     defer-datasource-initialization: false
     show-sql: true
@@ -20,8 +29,14 @@ spring:
     init:
       mode: never
 
-n1netails.encryption:
-  rotate: ${N1NETAILS_ROTATE:false}
-  old.key: ${N1NETAILS_ENCRYPTION_OLD_KEY:add-old-encryption-key}
-  new.key: ${N1NETAILS_ENCRYPTION_NEW_KEY:add-new-encryption-key}
+n1netails:
+  database:
+    enabled: ${N1NETAILS_DATABASE_ENABLED:true}
+  encryption:
+    rotate: ${N1NETAILS_ROTATE:false}
+    old:
+      key: ${N1NETAILS_ENCRYPTION_OLD_KEY:add-old-encryption-key}
+    new:
+      key: ${N1NETAILS_ENCRYPTION_NEW_KEY:add-new-encryption-key}
+    key-rotation-type: ${N1NETAILS_KEY_ROTATION_TYPE:AES_TO_AES}
 

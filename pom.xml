@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.n1netails</groupId>
 	<artifactId>n1netails-cipher-kitsune</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>n1netails-cipher-kitsune</name>
 	<description>Service used to manage ciphers for the n1netails application</description>
 	<url/>
@@ -56,6 +56,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk18on</artifactId>
+			<version>1.78.1</version>
 		</dependency>
 	</dependencies>
 
