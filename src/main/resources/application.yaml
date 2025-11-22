@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: n1netails-cipher-service
+  datasource:
+    initialization-mode: never
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost/n1netails}
+    username: ${POSTGRES_USERNAME:n1netails}
+    password: ${POSTGRES_PASSWORD:n1netails}
+  driver-class-name: org.postgresql.Driver
+  jpa:
+    defer-datasource-initialization: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: ntail
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: never
+
+n1netails.encryption:
+  rotate: ${N1NETAILS_ROTATE:false}
+  old.key: ${N1NETAILS_ENCRYPTION_OLD_KEY:add-old-encryption-key}
+  new.key: ${N1NETAILS_ENCRYPTION_NEW_KEY:add-new-encryption-key}
+

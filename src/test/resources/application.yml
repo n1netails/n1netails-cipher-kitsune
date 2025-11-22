@@ -1,0 +1,4 @@
+
+n1netails.encryption:
+  old.key: ${N1NETAILS_ENCRYPTION_OLD_KEY:S7Fs/U8f0hKGMrG5v92jw5UdxjoshprXADnwmIVJRZo=}
+  new.key: ${N1NETAILS_ENCRYPTION_NEW_KEY:YdBpGUAGni20H7VP0+6wluXOFbTmyO5fr2nT/c5fVs8=}
