@@ -25,13 +25,13 @@ Supported Features:
 
 ## Configuration — Environment Variables
 
-| Variable                                    | Description                                    | Default                               |
-|---------------------------------------------|------------------------------------------------|---------------------------------------|
-| `POSTGRES_URL`                              | Postgres database url                          | jdbc:postgresql://localhost/n1netails |
-| `POSTGRES_USERNAME`                         | Postgres user                                  | n1netails                             |
-| `POSTGRES_PASSWORD`                         | Postgres user password                         | n1netails                             |
-| `N1NETAILS_ENCRYPTION_OLD_KEY`              | URL endpoint to send alert data                | add-old-encryption-key                |
-| `N1NETAILS_ENCRYPTION_NEW_KEY`              | Optional token for authentication (n1ne-token) | add-new-encryption-key                |
+| Variable                       | Description                                    | Default                               |
+|--------------------------------|------------------------------------------------|---------------------------------------|
+| `POSTGRES_URL`                 | Postgres database url                          | jdbc:postgresql://localhost/n1netails |
+| `POSTGRES_USERNAME`            | Postgres user                                  | n1netails                             |
+| `POSTGRES_PASSWORD`            | Postgres user password                         | n1netails                             |
+| `N1NETAILS_ENCRYPTION_OLD_KEY` | URL endpoint to send alert data                | add-old-encryption-key                |
+| `N1NETAILS_ENCRYPTION_NEW_KEY` | Optional token for authentication (n1ne-token) | add-new-encryption-key                |
 
 ---
 
