@@ -1,7 +1,7 @@
 # N1netails
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/n1netails/n1netails/refs/heads/main/n1netails_icon_transparent.png" alt="N1ne Tails" width="500" style="display: block; margin: auto;"/>
+  <img src="https://raw.githubusercontent.com/n1netails/n1netails-cipher-kitsune/refs/heads/main/kitsune.jpeg" alt="N1ne Tails" width="500" style="display: block; margin: auto;"/>
 </div>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
