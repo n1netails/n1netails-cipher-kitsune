@@ -8,7 +8,7 @@
 
 ---
 
-## Cipher Kitsune — Real-time Log Tailing & Alerting Service
+## Cipher Kitsune — N1netails Encryption Cipher Utilities
 
 Cipher Kitsune is an encryption utility related to n1netails.
 Supported Features:
