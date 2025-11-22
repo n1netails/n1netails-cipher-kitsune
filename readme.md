@@ -1,7 +1,7 @@
 # N1netails
 
 <div align="center">
-  <img src="https://github.com/n1netails/n1netails-cipher-kitsune/blob/v0.0.2/kitsune-v0.0.2.jpeg" alt="N1ne Tails" width="500" style="display: block; margin: auto;"/>
+  <img src="https://github.com/n1netails/n1netails-cipher-kitsune/blob/v0.0.3/kitsune-v0.0.3.jpeg" alt="N1ne Tails" width="500" style="display: block; margin: auto;"/>
 </div>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -12,14 +12,23 @@
 
 Cipher Kitsune is an encryption utility related to n1netails.
 Supported Features:
-- AES key generator
-- AES key rotation
-- Can be used to help rotate encrypted values used within the n1netails application.
 
----
+## Key Rotation Services
 
-## Getting Started with Cipher Kitsune
+The following key rotation services are available:
 
+- `AES_TO_AES` - Rotates data from an old AES key to a new AES key.
+- `DES_TO_AES` - Rotates data from an old DES key to a new AES key.
+- `AES_CTR` - Rotates data from an old AES-CTR key to a new AES-CTR key.
+- `CHACHA20` - Rotates data from an old ChaCha20 key to a new ChaCha20 key.
+- `TWOFISH` - Rotates data from an old Twofish key to a new Twofish key.
+- `DES_EDE_TO_AES` - Rotates data from an old 3DES (DESede) key to a new AES key.
+
+## Key Generator Utils
+- AesKeyGenerator
+- TwofishKeyGenerator
+- ChaCha20KeyGenerator
+- DesEdeKeyGenerator
 
 ---
 
@@ -37,19 +46,6 @@ Supported Features:
 
 ---
 
-## Key Rotation Services
-
-The following key rotation services are available:
-
-- `AES_TO_AES` - Rotates data from an old AES key to a new AES key.
-- `DES_TO_AES` - Rotates data from an old DES key to a new AES key.
-- `AES_CTR` - Rotates data from an old AES-CTR key to a new AES-CTR key.
-- `CHACHA20` - Rotates data from an old ChaCha20 key to a new ChaCha20 key.
-- `TWOFISH` - Rotates data from an old Twofish key to a new Twofish key.
-- `DES_EDE_TO_AES` - Rotates data from an old 3DES (DESede) key to a new AES key.
-
----
-
 #### Quick Start
 
 1. **Clone the repository** (if you haven’t already):
@@ -58,8 +54,6 @@ The following key rotation services are available:
    git clone https://github.com/n1netails/n1netails-cipher-kitsune.git
    cd n1netails-cipher-kitsune
    ```
-
-2.
 
 ### Deployment with Jar file
 Requires java 17 to be installed on your server
