@@ -1,7 +1,7 @@
 # N1netails
 
 <div align="center">
-  <img src="https://github.com/n1netails/n1netails-cipher-kitsune/blob/v0.0.3/kitsune-v0.0.3.jpeg" alt="N1ne Tails" width="500" style="display: block; margin: auto;"/>
+  <img src="https://github.com/n1netails/n1netails-cipher-kitsune/blob/v0.0.4/kitsune-v0.0.4.jpeg" alt="N1ne Tails" width="500" style="display: block; margin: auto;"/>
 </div>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -34,15 +34,15 @@ The following key rotation services are available:
 
 ## Configuration — Environment Variables
 
-| Variable | Description | Default |
-| --- | --- | --- |
-| `N1NETAILS_DATABASE_ENABLED` | Enables or disables the database connection | `true` |
-| `POSTGRES_URL` | Postgres database url | `jdbc:postgresql://localhost/n1netails` |
-| `POSTGRES_USERNAME` | Postgres user | `n1netails` |
-| `POSTGRES_PASSWORD` | Postgres user password | `n1netails` |
-| `N1NETAILS_ENCRYPTION_OLD_KEY` | The old encryption key to be used for decryption | `add-old-encryption-key` |
-| `N1NETAILS_ENCRYPTION_NEW_KEY` | The new encryption key to be used for encryption | `add-new-encryption-key` |
-| `N1NETAILS_KEY_ROTATION_TYPE` | The type of key rotation to be used | `AES_TO_AES` |
+| Variable                       | Description                                      | Default                                 |
+|--------------------------------|--------------------------------------------------|-----------------------------------------|
+| `N1NETAILS_DATABASE_ENABLED`   | Enables or disables the database connection      | `false`                                 |
+| `POSTGRES_URL`                 | Postgres database url                            | `jdbc:postgresql://localhost/n1netails` |
+| `POSTGRES_USERNAME`            | Postgres user                                    | `n1netails`                             |
+| `POSTGRES_PASSWORD`            | Postgres user password                           | `n1netails`                             |
+| `N1NETAILS_ENCRYPTION_OLD_KEY` | The old encryption key to be used for decryption | `add-old-encryption-key`                |
+| `N1NETAILS_ENCRYPTION_NEW_KEY` | The new encryption key to be used for encryption | `add-new-encryption-key`                |
+| `N1NETAILS_KEY_ROTATION_TYPE`  | The type of key rotation to be used              | `AES_TO_AES`                            |
 
 ---
 

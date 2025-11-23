@@ -31,7 +31,7 @@ spring:
 
 n1netails:
   database:
-    enabled: ${N1NETAILS_DATABASE_ENABLED:true}
+    enabled: ${N1NETAILS_DATABASE_ENABLED:false}
   encryption:
     rotate: ${N1NETAILS_ROTATE:false}
     old:
