@@ -2,6 +2,7 @@ package com.n1netails.n1netails.cipher.kitsune;
 
 import com.n1netails.n1netails.cipher.kitsune.service.NotificationService;
 import com.n1netails.n1netails.cipher.kitsune.util.AesKeyGenerator;
+import com.n1netails.n1netails.cipher.kitsune.util.JwtSecretGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,8 +29,10 @@ public class N1netailsCipherServiceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		String AesKey = AesKeyGenerator.genAesKey();
+		String JwtSecret = JwtSecretGenerator.genJwtSecret();
 		log.info("--------------------------------");
-		log.info("Generated Key: {}", AesKey);
+		log.info("Generated AES Key: {}", AesKey);
+		log.info("Generated JWT Secret: {}", JwtSecret);
 		log.info("--------------------------------");
 
 		if (encryptionRotationEnabled) {
