@@ -1,7 +1,7 @@
 # N1netails
 
 <div align="center">
-  <img src="https://github.com/n1netails/n1netails-cipher-kitsune/blob/v0.0.4/kitsune-v0.0.4.jpeg" alt="N1ne Tails" width="500" style="display: block; margin: auto;"/>
+  <img src="https://github.com/n1netails/n1netails-cipher-kitsune/blob/v0.0.5/kitsune-v0.0.5.jpeg" alt="N1netails" width="500" style="display: block; margin: auto;"/>
 </div>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -29,7 +29,7 @@ The following key rotation services are available:
 - TwofishKeyGenerator
 - ChaCha20KeyGenerator
 - DesEdeKeyGenerator
-
+- JwtSecretGenerator
 ---
 
 ## Configuration — Environment Variables
