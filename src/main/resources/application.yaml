@@ -40,4 +40,39 @@ n1netails:
     new:
       key: ${N1NETAILS_ENCRYPTION_NEW_KEY:add-new-encryption-key}
     key-rotation-type: ${N1NETAILS_KEY_ROTATION_TYPE:AES_TO_AES}
+    # New Encryption Service Flags
+    aes-gcm:
+      enabled: ${N1NETAILS_ENCRYPTION_AES_GCM_ENABLED:true}
+    chacha20:
+      enabled: ${N1NETAILS_ENCRYPTION_CHACHA20_ENABLED:true}
+    rsa-oaep:
+      enabled: ${N1NETAILS_ENCRYPTION_RSA_OAEP_ENABLED:true}
+    ec:
+      enabled: ${N1NETAILS_ENCRYPTION_EC_ENABLED:true}
+  hashing:
+    sha-256:
+      enabled: ${N1NETAILS_HASHING_SHA256_ENABLED:true}
+    sha-512:
+      enabled: ${N1NETAILS_HASHING_SHA512_ENABLED:true}
+    argon2:
+      enabled: ${N1NETAILS_HASHING_ARGON2_ENABLED:true}
+    bcrypt:
+      enabled: ${N1NETAILS_HASHING_BCRYPT_ENABLED:true}
+  encoding:
+    base64:
+      enabled: ${N1NETAILS_ENCODING_BASE64_ENABLED:true}
+    hex:
+      enabled: ${N1NETAILS_ENCODING_HEX_ENABLED:true}
+  ratelimit:
+    capacity: ${N1NETAILS_RATELIMIT_CAPACITY:100}
+    tokens-per-second: ${N1NETAILS_RATELIMIT_TPS:10}
+
+# Swagger UI Customization
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+    custom-css: /css/custom.css
 

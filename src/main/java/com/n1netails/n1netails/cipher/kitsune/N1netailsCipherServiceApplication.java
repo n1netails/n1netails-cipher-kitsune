@@ -28,14 +28,11 @@ public class N1netailsCipherServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		String AesKey = AesKeyGenerator.genAesKey();
-		String JwtSecret = JwtSecretGenerator.genJwtSecret();
 		log.info("--------------------------------");
-		log.info("Generated AES Key: {}", AesKey);
-		log.info("Generated JWT Secret: {}", JwtSecret);
+		log.info("Cipher Kitsune Service Started");
 		log.info("--------------------------------");
 
-		if (encryptionRotationEnabled) {
+		if (encryptionRotationEnabled != null && encryptionRotationEnabled) {
 			log.info("===============================================");
 			log.info("Starting to rotate encrypted values..");
 			log.info("--------------------------------");
