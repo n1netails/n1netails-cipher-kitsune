@@ -5,6 +5,15 @@ spring:
     active: ${N1NETAILS_PROFILE:dev}
 
 server.port: 9905
+
+# Swagger UI Customization
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+
 ---
 
 spring:
@@ -66,13 +75,3 @@ n1netails:
   ratelimit:
     capacity: ${N1NETAILS_RATELIMIT_CAPACITY:100}
     tokens-per-second: ${N1NETAILS_RATELIMIT_TPS:10}
-
-# Swagger UI Customization
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
-    display-request-duration: true
-    custom-css: /css/custom.css
-
