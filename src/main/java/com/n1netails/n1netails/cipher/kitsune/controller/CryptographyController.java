@@ -46,7 +46,7 @@ public class CryptographyController {
                             examples = {
                                     @io.swagger.v3.oas.annotations.media.ExampleObject(
                                             name = "AES-GCM Example",
-                                            value = "{\"data\": \"Kitsune Secret Message\", \"algorithm\": \"AES\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\", \"iv\": \"MTIzNDU2Nzg5MDEy\"}"
+                                            value = "{\"data\": \"Kitsune Secret Message\", \"algorithm\": \"AES-GCM\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\", \"iv\": \"MTIzNDU2Nzg5MDEy\"}"
                                     ),
                                     @io.swagger.v3.oas.annotations.media.ExampleObject(
                                             name = "RSA-OAEP Example",
@@ -77,7 +77,7 @@ public class CryptographyController {
                             examples = {
                                     @io.swagger.v3.oas.annotations.media.ExampleObject(
                                             name = "AES-GCM Example",
-                                            value = "{\"data\": \"MTIzNDU2Nzg5MDEywjO9gNMWVX4A+mKXY5sj3vOZmhNfmVt/dRfgcwHHOSqYVOuVF9A=\", \"algorithm\": \"AES\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\"}"
+                                            value = "{\"data\": \"MTIzNDU2Nzg5MDEywjO9gNMWVX4A+mKXY5sj3vOZmhNfmVt/dRfgcwHHOSqYVOuVF9A=\", \"algorithm\": \"AES-GCM\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\"}"
                                     ),
                                     @io.swagger.v3.oas.annotations.media.ExampleObject(
                                             name = "RSA-OAEP Example",

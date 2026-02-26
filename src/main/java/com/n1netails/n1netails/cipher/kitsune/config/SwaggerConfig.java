@@ -62,7 +62,15 @@ public class SwaggerConfig {
                                 "### 🚀 Getting Started\n" +
                                 "1. Use `/generate/key` to create a symmetric key.\n\n" +
                                 "2. Use `/encrypt` with the generated key and data.\n\n" +
-                                "3. Copy the result and use it in `/decrypt` to retrieve your original data.")
+                                "3. Copy the result and use it in `/decrypt` to retrieve your original data.\n\n"+
+                                "### ⚠️ Security Warning\n" +
+                                "This is a stateless encryption service. N1netails does **not** store, recover, or retain encryption keys, IVs, plaintext, or ciphertext.\n\n" +
+                                "If you lose your encryption key or IV, your data cannot be recovered.\n\n" +
+                                "The example values shown in this documentation are for demonstration purposes only.\n\n" +
+                                "**Do not use example keys, IVs, or hashes in production environments. Generate your own via the API.**\n\n" +
+                                "Always generate cryptographically secure keys and IVs for real-world usage and ensure all requests are sent over HTTPS.\n\n" +
+                                "You are solely responsible for secure key management, storage, and transmission."
+                                )
                         .contact(new Contact().name("N1netails Support Discord").url("https://discord.gg/ma9CCw7F2x"))
                         .license(new License().name("MIT").url("https://opensource.org/licenses/MIT")));
     }
