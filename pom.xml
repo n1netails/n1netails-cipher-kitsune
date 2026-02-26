@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.n1netails</groupId>
 	<artifactId>n1netails-cipher-kitsune</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<name>n1netails-cipher-kitsune</name>
 	<description>Service used to manage ciphers for the n1netails application</description>
 	<url/>
