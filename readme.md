@@ -16,6 +16,12 @@ Cipher Kitsune is a production-ready, modular **Encryption-as-a-Service (EaaS)**
 
 Cipher Kitsune provides a comprehensive REST API for encryption, hashing, and encoding.
 
+Try the API here: [KITSUNE](https://kitsune.n1netails.com)
+<div>
+<img src="https://pump.fun/pump-logomark.svg?dpl=dpl_4Fz3vVSybWSH3qJsXQPiA6QjnmLo" alt="pump.fun" width="12"/>
+<a href="https://pump.fun/coin/2Z6ygm5k6Gm4W9dgeDoc1dDSFpkLWp7wxo95DPszpump">Pump Fun</a>
+</div>
+
 ### Core Features:
 - **Modular Strategy Pattern:** Easily add or rotate encryption algorithms.
 - **Configuration-Driven:** Toggle algorithms via feature flags without code changes.
@@ -85,10 +91,7 @@ curl -X POST http://localhost:9905/api/v1/hash \
 ## 🎨 API Documentation
 
 Interactive Swagger documentation is available at:
-`http://localhost:9905/swagger-ui.html`
-
-The documentation features a **dark mode** theme with the signature Kitsune accent color (`#F06D0F`).
-
+`https://kitsune.n1netails.com`
 ---
 
 ## Key Rotation Services

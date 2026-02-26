@@ -13,7 +13,7 @@ n1netails:
 # Swagger UI Customization
 springdoc:
   swagger-ui:
-    path: /swagger-ui.html
+    path: /
     tags-sorter: alpha
     operations-sorter: alpha
     display-request-duration: true
