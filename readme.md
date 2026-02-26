@@ -56,7 +56,7 @@ curl -X POST http://localhost:9905/api/v1/encrypt \
      -H "Content-Type: application/json" \
      -d '{
        "data": "Secret Message",
-       "algorithm": "AES",
+       "algorithm": "AES-GCM",
        "key": "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=",
        "iv": "MTIzNDU2Nzg5MDEy"
      }'
