@@ -3,53 +3,22 @@
     --primary-color: #F06D0F;
 }
 
-/* Base Dark Mode via Inversion */
-html {
-    background-color: #1b1b1b;
-}
-
-.swagger-ui {
-    filter: invert(88%) hue-rotate(180deg);
-    background-color: #fff; /* Becomes dark after inversion */
-}
-
-/* Re-invert images and code blocks to maintain original look */
-.swagger-ui img,
-.swagger-ui .microlight,
-.swagger-ui .model-box,
-.swagger-ui .responses-wrapper,
-.swagger-ui .opblock-body pre {
-    filter: invert(100%) hue-rotate(180deg);
-}
-
-/* Fix Topbar */
-.swagger-ui .topbar {
-    background-color: #eee !important; /* Becomes dark after inversion */
-}
-
 /* Logo Replacement - Better compatibility */
 .swagger-ui .topbar .link svg {
     display: none !important;
 }
 
 .swagger-ui .topbar .link::after {
-    content: "";
-    display: block;
-    width: 200px;
+    content: "KITSUNE";
+    display: inline-flex;
+    align-items: center;
     height: 40px;
-    background: url('/images/kitsune.jpg') no-repeat center left;
-    background-size: contain;
-    filter: invert(100%) hue-rotate(180deg); /* Restore original image colors */
-}
+    padding-left: 50px;
+    margin-left: 10px;
 
-/* Accent Color - Re-invert target color to get Kitsune Orange */
-/* #F06D0F inverted is approx #0f92f0 */
-.swagger-ui .info .title,
-.swagger-ui .topbar-wrapper .link span {
-    color: #0f92f0 !important;
-}
+    background: url('/images/kitsune.jpg') no-repeat left center;
+    background-size: 40px 40px;
 
-.swagger-ui .btn.execute {
-    background-color: #0f92f0 !important;
-    color: #fff !important;
+    font-weight: bold;
+    font-size: 18px;
 }

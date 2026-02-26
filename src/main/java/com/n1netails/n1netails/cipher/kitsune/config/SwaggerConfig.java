@@ -4,7 +4,6 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import org.springdoc.core.properties.SwaggerUiConfigParameters;
 import org.springdoc.core.properties.SwaggerUiConfigProperties;
 import org.springdoc.core.properties.SwaggerUiOAuthProperties;
 import org.springdoc.core.providers.ObjectMapperProvider;
@@ -50,7 +49,7 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("N1netails Cipher Kitsune API")
+                        .title("N1netails Cipher KITSUNE API")
                         .version("v0.0.5")
                         .description("Production-ready **Encryption-as-a-Service (EaaS)** platform.\n\n" +
                                 "### 🎯 Features\n" +
@@ -61,10 +60,10 @@ public class SwaggerConfig {
                                 "### 🔐 Security Note\n" +
                                 "This service does **not** log sensitive data. All encryption keys provided by the user are used only for the duration of the request.\n\n" +
                                 "### 🚀 Getting Started\n" +
-                                "1. Use `/generate/key` to create a symmetric key.\n" +
-                                "2. Use `/encrypt` with the generated key and data.\n" +
+                                "1. Use `/generate/key` to create a symmetric key.\n\n" +
+                                "2. Use `/encrypt` with the generated key and data.\n\n" +
                                 "3. Copy the result and use it in `/decrypt` to retrieve your original data.")
-                        .contact(new Contact().name("N1netails Support").url("https://discord.gg/ma9CCw7F2x"))
+                        .contact(new Contact().name("N1netails Support Discord").url("https://discord.gg/ma9CCw7F2x"))
                         .license(new License().name("MIT").url("https://opensource.org/licenses/MIT")));
     }
 }
