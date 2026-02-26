@@ -41,6 +41,47 @@ Cipher Kitsune provides a comprehensive REST API for encryption, hashing, and en
 
 ---
 
+## ⚡ Quick Start Examples
+
+### Base64 Encode
+```bash
+curl -X POST http://localhost:9905/api/v1/encode \
+     -H "Content-Type: application/json" \
+     -d '{"data": "Hello Kitsune", "algorithm": "Base64"}'
+```
+
+### AES Encrypt
+```bash
+curl -X POST http://localhost:9905/api/v1/encrypt \
+     -H "Content-Type: application/json" \
+     -d '{
+       "data": "Secret Message",
+       "algorithm": "AES",
+       "key": "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=",
+       "iv": "MTIzNDU2Nzg5MDEy"
+     }'
+```
+
+### RSA Encrypt
+```bash
+curl -X POST http://localhost:9905/api/v1/encrypt \
+     -H "Content-Type: application/json" \
+     -d '{
+       "data": "Secret Message",
+       "algorithm": "RSA-OAEP",
+       "key": "-----BEGIN PUBLIC KEY-----\n..."
+     }'
+```
+
+### SHA-256 Hashing
+```bash
+curl -X POST http://localhost:9905/api/v1/hash \
+     -H "Content-Type: application/json" \
+     -d '{"data": "Kitsune", "algorithm": "SHA-256"}'
+```
+
+---
+
 ## 🎨 API Documentation
 
 Interactive Swagger documentation is available at:
@@ -61,26 +102,64 @@ The following key rotation services are available:
 - `TWOFISH` - Rotates data from an old Twofish key to a new Twofish key.
 - `DES_EDE_TO_AES` - Rotates data from an old 3DES (DESede) key to a new AES key.
 
-## Key Generator Utils
-- AesKeyGenerator
-- TwofishKeyGenerator
-- ChaCha20KeyGenerator
-- DesEdeKeyGenerator
-- JwtSecretGenerator
+## 🔐 Generating Keys
+
+Kitsune provides utility endpoints to generate cryptographically strong keys and vectors.
+
+### 1. JWT Secret Key (HMAC SHA-256)
+- **When to use:** Used for signing and verifying JSON Web Tokens.
+- **Recommended size:** 256-bit (32 bytes) or higher.
+- **Curl Example:**
+  ```bash
+  curl -X GET http://localhost:9905/api/v1/generate/key/jwt
+  ```
+- **Example Response:**
+  ```json
+  {
+    "success": true,
+    "algorithm": "JWT",
+    "result": "bXktc2VjdXJlLWp3dC1zZWNyZXQta2V5LTMyLWJ5dGVzLWxvbmc=",
+    "timestamp": "2023-10-27T10:00:00"
+  }
+  ```
+
+### 2. AES Secret Key
+- **When to use:** Symmetric encryption (AES-GCM, AES-CBC).
+- **Recommended size:** 256-bit (32 bytes).
+- **Curl Example:**
+  ```bash
+  curl -X GET http://localhost:9905/api/v1/generate/key/aes
+  ```
+
+### 3. RSA Key Pair
+- **When to use:** Asymmetric encryption, digital signatures.
+- **Recommended size:** 2048-bit or 4096-bit.
+- **Curl Example:**
+  ```bash
+  curl -X GET http://localhost:9905/api/v1/generate/keypair/rsa
+  ```
+- **Example Response:** Returns a JSON object with `publicKey` and `privateKey` in PEM format.
+
+### 4. Initialization Vector (IV)
+- **When to use:** Required for symmetric encryption modes like GCM or CBC to ensure uniqueness.
+- **Recommended size:** 12 bytes for AES-GCM.
+- **Curl Example:**
+  ```bash
+  curl -X GET "http://localhost:9905/api/v1/generate/iv?length=12"
+  ```
+
 ---
 
 ## Configuration — Environment Variables
 
 | Variable                       | Description                                      | Default                                 |
 |--------------------------------|--------------------------------------------------|-----------------------------------------|
-| Variable                           | Description                                      | Default                                 |
-|------------------------------------|--------------------------------------------------|-----------------------------------------|
 | `N1NETAILS_DATABASE_ENABLED`       | Enables or disables the database connection      | `false`                                 |
 | `POSTGRES_URL`                     | Postgres database url                            | `jdbc:postgresql://localhost/n1netails` |
 | `POSTGRES_USERNAME`                | Postgres user                                    | `n1netails`                             |
 | `POSTGRES_PASSWORD`                | Postgres user password                           | `n1netails`                             |
-| `N1NETAILS_ENCRYPTION_OLD_KEY`     | The old encryption key to be used for decryption | `add-old-encryption-key`                |
-| `N1NETAILS_ENCRYPTION_NEW_KEY`     | The new encryption key to be used for encryption | `add-new-encryption-key`                |
+| `N1NETAILS_ENCRYPTION_OLD_KEY`     | The old encryption key to be used for decryption | `MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=` |
+| `N1NETAILS_ENCRYPTION_NEW_KEY`     | The new encryption key to be used for encryption | `MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=` |
 | `N1NETAILS_KEY_ROTATION_TYPE`      | The type of key rotation to be used              | `AES_TO_AES`                            |
 | `N1NETAILS_ENCRYPTION_AES_GCM_ENABLED` | Enable/Disable AES-GCM strategy              | `true`                                  |
 | `N1NETAILS_ENCRYPTION_CHACHA20_ENABLED`| Enable/Disable ChaCha20 strategy             | `true`                                  |

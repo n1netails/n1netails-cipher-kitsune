@@ -18,7 +18,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @Transactional
-@ConditionalOnProperty(name = "n1netails.database.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "n1netails.database.enabled", havingValue = "true")
 public class NotificationService {
 
     @Value("${n1netails.encryption.key-rotation-type}")

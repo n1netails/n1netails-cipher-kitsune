@@ -1,11 +1,10 @@
 package com.n1netails.n1netails.cipher.kitsune.controller;
 
-import com.n1netails.n1netails.cipher.kitsune.dto.*;
+import com.n1netails.n1netails.cipher.kitsune.dto.ApiResponse;
+import com.n1netails.n1netails.cipher.kitsune.dto.EncryptionRequest;
 import com.n1netails.n1netails.cipher.kitsune.factory.StrategyFactory;
 import com.n1netails.n1netails.cipher.kitsune.service.KeyGenerationService;
-import com.n1netails.n1netails.cipher.kitsune.strategy.EncodingStrategy;
 import com.n1netails.n1netails.cipher.kitsune.strategy.EncryptionStrategy;
-import com.n1netails.n1netails.cipher.kitsune.strategy.HashingStrategy;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -18,8 +17,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-@Tag(name = "Encryption Service", description = "Endpoints for encryption, hashing, and key generation")
-public class EncryptionController {
+@Tag(name = "Cryptographic Operations", description = "Endpoints for symmetric/asymmetric encryption and key generation")
+public class CryptographyController {
 
     private final StrategyFactory strategyFactory;
     private final KeyGenerationService keyGenerationService;
@@ -44,10 +43,16 @@ public class EncryptionController {
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "Encryption request payload",
                     content = @io.swagger.v3.oas.annotations.media.Content(
-                            examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
-                                    name = "AES-GCM Example",
-                                    value = "{\"data\": \"Kitsune Secret Message\", \"algorithm\": \"AES\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\", \"iv\": \"MTIzNDU2Nzg5MDEy\"}"
-                            )
+                            examples = {
+                                    @io.swagger.v3.oas.annotations.media.ExampleObject(
+                                            name = "AES-GCM Example",
+                                            value = "{\"data\": \"Kitsune Secret Message\", \"algorithm\": \"AES\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\", \"iv\": \"MTIzNDU2Nzg5MDEy\"}"
+                                    ),
+                                    @io.swagger.v3.oas.annotations.media.ExampleObject(
+                                            name = "RSA-OAEP Example",
+                                            value = "{\"data\": \"Kitsune Secret Message\", \"algorithm\": \"RSA-OAEP\", \"key\": \"-----BEGIN PUBLIC KEY-----\\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzLIDOOhiqNlIVGCRAbyo...\\n-----END PUBLIC KEY-----\"}"
+                                    )
+                            }
                     )
             )
             @Valid @RequestBody EncryptionRequest request) throws Exception {
@@ -69,10 +74,16 @@ public class EncryptionController {
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "Decryption request payload",
                     content = @io.swagger.v3.oas.annotations.media.Content(
-                            examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
-                                    name = "AES-GCM Example",
-                                    value = "{\"data\": \"MTIzNDU2Nzg5MDEywjO9gNMWVX4A+mKXY5sj3vOZmhNfmVt/dRfgcwHHOSqYVOuVF9A=\", \"algorithm\": \"AES\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\"}"
-                            )
+                            examples = {
+                                    @io.swagger.v3.oas.annotations.media.ExampleObject(
+                                            name = "AES-GCM Example",
+                                            value = "{\"data\": \"MTIzNDU2Nzg5MDEywjO9gNMWVX4A+mKXY5sj3vOZmhNfmVt/dRfgcwHHOSqYVOuVF9A=\", \"algorithm\": \"AES\", \"key\": \"MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=\"}"
+                                    ),
+                                    @io.swagger.v3.oas.annotations.media.ExampleObject(
+                                            name = "RSA-OAEP Example",
+                                            value = "{\"data\": \"MIIBCgKCAQEAzLIDOOhiqNlIVGCRAbyo...\", \"algorithm\": \"RSA-OAEP\", \"key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDMsgM46GKo2UhU...\\n-----END PRIVATE KEY-----\"}"
+                                    )
+                            }
                     )
             )
             @Valid @RequestBody EncryptionRequest request) throws Exception {
@@ -81,79 +92,6 @@ public class EncryptionController {
             return ResponseEntity.status(403).body(ApiResponse.error("Algorithm disabled or not found"));
         }
         String result = strategy.decrypt(request.getData(), request.getKey());
-        return ResponseEntity.ok(ApiResponse.success(result, strategy.getAlgorithmName()));
-    }
-
-    @PostMapping("/hash")
-    @Operation(
-            summary = "Hash data using specified algorithm",
-            description = "Computes a cryptographic hash of the input data. Supports standard algorithms like SHA-256 " +
-                    "as well as password hashing algorithms like Argon2 and BCrypt."
-    )
-    public ResponseEntity<ApiResponse<String>> hash(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Hashing request payload",
-                    content = @io.swagger.v3.oas.annotations.media.Content(
-                            examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
-                                    name = "SHA-256 Example",
-                                    value = "{\"data\": \"n1netails-kitsune\", \"algorithm\": \"SHA-256\"}"
-                            )
-                    )
-            )
-            @Valid @RequestBody HashRequest request) throws Exception {
-        HashingStrategy strategy = strategyFactory.resolveHashing(request.getAlgorithm());
-        if (strategy == null) {
-            return ResponseEntity.status(403).body(ApiResponse.error("Algorithm disabled or not found"));
-        }
-        String result = strategy.hash(request.getData(), request.getSalt());
-        return ResponseEntity.ok(ApiResponse.success(result, strategy.getAlgorithmName()));
-    }
-
-    @PostMapping("/encode")
-    @Operation(
-            summary = "Encode data using specified algorithm",
-            description = "Encodes raw data into a text-based format like Base64 or Hex."
-    )
-    public ResponseEntity<ApiResponse<String>> encode(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Encoding request payload",
-                    content = @io.swagger.v3.oas.annotations.media.Content(
-                            examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
-                                    name = "Base64 Example",
-                                    value = "{\"data\": \"Kitsune Encryption Service\", \"algorithm\": \"Base64\"}"
-                            )
-                    )
-            )
-            @Valid @RequestBody EncodingRequest request) throws Exception {
-        EncodingStrategy strategy = strategyFactory.resolveEncoding(request.getAlgorithm());
-        if (strategy == null) {
-            return ResponseEntity.status(403).body(ApiResponse.error("Algorithm disabled or not found"));
-        }
-        String result = strategy.encode(request.getData());
-        return ResponseEntity.ok(ApiResponse.success(result, strategy.getAlgorithmName()));
-    }
-
-    @PostMapping("/decode")
-    @Operation(
-            summary = "Decode data using specified algorithm",
-            description = "Decodes text-based data (Base64, Hex) back to its original form."
-    )
-    public ResponseEntity<ApiResponse<String>> decode(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Decoding request payload",
-                    content = @io.swagger.v3.oas.annotations.media.Content(
-                            examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
-                                    name = "Base64 Example",
-                                    value = "{\"data\": \"S2l0c3VuZSBFbmNyeXB0aW9uIFNlcnZpY2U=\", \"algorithm\": \"Base64\"}"
-                            )
-                    )
-            )
-            @Valid @RequestBody EncodingRequest request) throws Exception {
-        EncodingStrategy strategy = strategyFactory.resolveEncoding(request.getAlgorithm());
-        if (strategy == null) {
-            return ResponseEntity.status(403).body(ApiResponse.error("Algorithm disabled or not found"));
-        }
-        String result = strategy.decode(request.getData());
         return ResponseEntity.ok(ApiResponse.success(result, strategy.getAlgorithmName()));
     }
 

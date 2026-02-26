@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     "n1netails.encryption.rotate=false"
 })
 @AutoConfigureMockMvc
-class EncryptionControllerTest {
+class CryptographyControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

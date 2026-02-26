@@ -6,6 +6,10 @@ spring:
 
 server.port: 9905
 
+n1netails:
+  database:
+    enabled: ${N1NETAILS_DATABASE_ENABLED:false}
+
 # Swagger UI Customization
 springdoc:
   swagger-ui:
@@ -40,14 +44,12 @@ spring:
       mode: never
 
 n1netails:
-  database:
-    enabled: ${N1NETAILS_DATABASE_ENABLED:false}
   encryption:
     rotate: ${N1NETAILS_ROTATE:false}
     old:
-      key: ${N1NETAILS_ENCRYPTION_OLD_KEY:add-old-encryption-key}
+      key: ${N1NETAILS_ENCRYPTION_OLD_KEY:MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=}
     new:
-      key: ${N1NETAILS_ENCRYPTION_NEW_KEY:add-new-encryption-key}
+      key: ${N1NETAILS_ENCRYPTION_NEW_KEY:MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=}
     key-rotation-type: ${N1NETAILS_KEY_ROTATION_TYPE:AES_TO_AES}
     # New Encryption Service Flags
     aes-gcm:
