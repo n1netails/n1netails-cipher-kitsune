@@ -19,7 +19,7 @@ Cipher Kitsune provides a comprehensive REST API for encryption, hashing, and en
 Try the API here: [KITSUNE](https://kitsune.n1netails.com)
 <div>
 <img src="https://pump.fun/pump-logomark.svg?dpl=dpl_4Fz3vVSybWSH3qJsXQPiA6QjnmLo" alt="pump.fun" width="12"/>
-<a href="https://pump.fun/coin/2Z6ygm5k6Gm4W9dgeDoc1dDSFpkLWp7wxo95DPszpump">Pump Fun</a>
+<a href="https://pump.fun/coin/2Z6ygm5k6Gm4W9dgeDoc1dDSFpkLWp7wxo95DPszpump">pump.fun</a>
 </div>
 
 ### Core Features:
