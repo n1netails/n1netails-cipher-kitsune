@@ -13,7 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Optional;
 
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+		org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class,
+		org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration.class,
+		org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration.class,
+		org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration.class
+})
 public class N1netailsCipherServiceApplication implements CommandLineRunner {
 
 	@Value("${n1netails.encryption.rotate}")
@@ -28,14 +33,11 @@ public class N1netailsCipherServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		String AesKey = AesKeyGenerator.genAesKey();
-		String JwtSecret = JwtSecretGenerator.genJwtSecret();
 		log.info("--------------------------------");
-		log.info("Generated AES Key: {}", AesKey);
-		log.info("Generated JWT Secret: {}", JwtSecret);
+		log.info("Cipher Kitsune Service Started");
 		log.info("--------------------------------");
 
-		if (encryptionRotationEnabled) {
+		if (encryptionRotationEnabled != null && encryptionRotationEnabled) {
 			log.info("===============================================");
 			log.info("Starting to rotate encrypted values..");
 			log.info("--------------------------------");
