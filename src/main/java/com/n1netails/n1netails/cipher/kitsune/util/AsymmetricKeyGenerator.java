@@ -14,8 +14,8 @@ public class AsymmetricKeyGenerator {
         KeyPair pair = keyGen.generateKeyPair();
 
         Map<String, String> keys = new HashMap<>();
-        keys.put("publicKey", Base64.getEncoder().encodeToString(pair.getPublic().getEncoded()));
-        keys.put("privateKey", Base64.getEncoder().encodeToString(pair.getPrivate().getEncoded()));
+        keys.put("publicKey", convertToPem("PUBLIC KEY", pair.getPublic().getEncoded()));
+        keys.put("privateKey", convertToPem("PRIVATE KEY", pair.getPrivate().getEncoded()));
         return keys;
     }
 
@@ -25,8 +25,30 @@ public class AsymmetricKeyGenerator {
         KeyPair pair = keyGen.generateKeyPair();
 
         Map<String, String> keys = new HashMap<>();
-        keys.put("publicKey", Base64.getEncoder().encodeToString(pair.getPublic().getEncoded()));
-        keys.put("privateKey", Base64.getEncoder().encodeToString(pair.getPrivate().getEncoded()));
+        keys.put("publicKey", convertToPem("PUBLIC KEY", pair.getPublic().getEncoded()));
+        keys.put("privateKey", convertToPem("PRIVATE KEY", pair.getPrivate().getEncoded()));
         return keys;
+    }
+
+    public static String convertToPem(String type, byte[] encodedKey) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("-----BEGIN ").append(type).append("-----\n");
+        String base64 = Base64.getEncoder().encodeToString(encodedKey);
+        for (int i = 0; i < base64.length(); i += 64) {
+            int end = Math.min(i + 64, base64.length());
+            sb.append(base64, i, end).append("\n");
+        }
+        sb.append("-----END ").append(type).append("-----");
+        return sb.toString();
+    }
+
+    public static String cleanPem(String pem) {
+        if (pem == null) return null;
+        if (!pem.contains("-----BEGIN")) {
+            return pem.replaceAll("\\s", "");
+        }
+        return pem.replaceAll("-----BEGIN.*?-----", "")
+                .replaceAll("-----END.*?-----", "")
+                .replaceAll("\\s", "");
     }
 }

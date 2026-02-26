@@ -1,6 +1,7 @@
 package com.n1netails.n1netails.cipher.kitsune.strategy.impl;
 
 import com.n1netails.n1netails.cipher.kitsune.strategy.EncryptionStrategy;
+import com.n1netails.n1netails.cipher.kitsune.util.AsymmetricKeyGenerator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,8 @@ public class RsaOaepStrategy implements EncryptionStrategy {
 
     @Override
     public String encrypt(String data, String key) throws Exception {
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.getDecoder().decode(key));
+        String cleanKey = AsymmetricKeyGenerator.cleanPem(key);
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.getDecoder().decode(cleanKey));
         KeyFactory kf = KeyFactory.getInstance("RSA");
         PublicKey publicKey = kf.generatePublic(spec);
 
@@ -31,7 +33,8 @@ public class RsaOaepStrategy implements EncryptionStrategy {
 
     @Override
     public String decrypt(String encryptedData, String key) throws Exception {
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(key));
+        String cleanKey = AsymmetricKeyGenerator.cleanPem(key);
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(cleanKey));
         KeyFactory kf = KeyFactory.getInstance("RSA");
         PrivateKey privateKey = kf.generatePrivate(spec);
 
